@@ -2,11 +2,10 @@ MIT License
 
 Copyright (c) 2026 Opulentia AI
 
-This skill is a combination of three MIT-licensed works, substantial portions of
-which are reproduced here:
+Substantial portions of two MIT-licensed works are reproduced here:
 
-  - The `customer-research` skill and the `email` subagent from
-    vercel-labs/marketing-team-eve-template (MIT), Copyright (c) Vercel, Inc.
+  - The `customer-research` skill from vercel-labs/marketing-team-eve-template
+    (MIT), Copyright (c) Vercel, Inc.
     https://github.com/vercel-labs/marketing-team-eve-template
 
   - The `last30days` skill from mvanhorn/last30days-skill (MIT),

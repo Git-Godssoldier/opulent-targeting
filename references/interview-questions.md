@@ -58,7 +58,7 @@ Question 3 is uncomfortable and it's the reason to ask. An objection with no goo
 3. What phrases are banned, whether for legal reasons or taste?
 4. Whose marketing in your space do you dislike, and why?
 
-Question 4 gets a sharper answer than asking what they like, and the dislikes convert directly into the anti-list the copy in Phase 6 works against.
+Question 4 gets a sharper answer than asking what they like, and the dislikes convert directly into the anti-list the voice section of the report works against.
 
 ## Following up on a vague answer
 

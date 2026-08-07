@@ -1,13 +1,13 @@
 # Synthesis and handback
 
-Loaded by Phase 4 of `SKILL.md`, before you write a word of the deliverable. It carries the `last30days` judge-agent contract unchanged: how to read the engine's evidence, the per-query-type output templates, the citation rules, the self-checks, and what happens when the user responds.
+Loaded by Phase 4 of `SKILL.md`, before you write a word of the deliverable. It carries the judge-agent contract: how to read the engine's evidence, the per-query-type output templates, the citation rules, the self-checks, and what happens when the user responds.
 
 Three things to know about how it reads inside Opulent-Targeting:
 
 - **"LAW N" means the Output Contract in Phase 0 of `SKILL.md`.** Re-read it now if it is not in your active context.
 - **`/last30days` still means the engine** (Phase 3), including inside engine-emitted strings, which pass through verbatim.
-- **The stop at the end is scoped.** The "WAIT FOR USER'S RESPONSE" pause below is the end of the run when research *was* the ask. When the brief that started this run already names an email deliverable, the findings brief is the handback for Phase 5 and the workflow continues into Phase 6 without pausing. Phase 5 of `SKILL.md` draws that line; everything else in this file applies either way.
-- **Nothing in this file is a question to ask.** This skill runs unattended by default. The invitation block is a closing line, not a checkpoint. The "WHEN USER RESPONDS" handlers below (drill, register, ELI5, freshness verification, topic queue, prompt writing) are what to do if the user comes back on their own; never open with them, never offer them as a menu, and never pause a run waiting for one. The one modal in this file, the just-in-time X unlock offer after a zero-result X lane, is suppressed on an unattended run: report the zero and its cause as a coverage note instead. `references/evidence-engine.md` opens with the full override table.
+- **The templates here shape the chat synthesis, not the report.** The per-query-type templates below are the canonical shape for what goes in the chat. The Phase 5 document report is a different surface with its own outline in `SKILL.md`, and LAWs 2 and 4 do not constrain it. Everything else in this file - the evidence reading, the weighting, the citation priority, the self-checks - applies to both.
+- **Nothing in this file is a question to ask.** This skill runs unattended by default, and it does not stop before Phase 5. The invitation block is a closing line, not a checkpoint, and "WAIT FOR USER'S RESPONSE" describes what happens after the report is delivered. The "WHEN USER RESPONDS" handlers below (drill, register, ELI5, freshness verification, topic queue, prompt writing) are what to do if the user comes back on their own; never open with them, never offer them as a menu, and never pause a run waiting for one. The one modal in this file, the just-in-time X unlock offer after a zero-result X lane, is suppressed on an unattended run: report the zero and its cause as a coverage note instead. `references/evidence-engine.md` opens with the full override table.
 
 ---
 

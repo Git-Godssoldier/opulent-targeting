@@ -2,10 +2,10 @@
 
 Loaded by Phase 3 of `SKILL.md`. Read it before the first engine call.
 
-This is the `last30days` v3.18.4 operating contract, carried over unchanged. Three things to know about how it reads inside Opulent-Targeting:
+This is the `last30days` v3.18.4 engine contract. Three things to know about how it reads inside Opulent-Targeting:
 
 - **`/last30days` still means the engine.** Where the text below says `/last30days`, it means an invocation of this engine, which is Phase 3 of this skill. The CLI name, its flags, the strings the engine emits (including the `/last30days "<topic>"` handoffs inside a discovery brief), and the dated failure records all keep that name. Never rewrite an engine-emitted string.
-- **"LAW N" means the Output Contract in Phase 0 of `SKILL.md`.** The eleven LAWs were hoisted to the top of this skill for the same reason they were hoisted upstream: they have to be in context at synthesis time.
+- **"LAW N" means the Output Contract in Phase 0 of `SKILL.md`.** The eleven LAWs sit at the top of this skill because they have to be in context at synthesis time.
 - **Synthesis lives next door.** Everything about reading the engine's evidence and turning it into the deliverable is in `synthesis-and-handback.md`. This file ends when the engine's output and the web supplements are in hand.
 
 ## Autonomous run overrides — read before the setup wizard
@@ -29,7 +29,7 @@ This contract was written for a skill that talks to a person. Opulent-Targeting 
 | **HTML brief and hosted publishing** | Save locally, show the path. Do not publish. The publishing choice is one of the three gates that survives autonomy. |
 | **Engine exit code 3**, the hosted API asked a clarifying question | Fold the most-supported angle into the topic yourself, re-run, and record which angle you chose. Only relay the question to the user if the re-run also exits 3. |
 
-Two things this does not change. `AskUserQuestion` is still the right tool for the send approval in Phase 8. And "Agent Mode" further down this file is the closest thing the upstream contract has to this mode: its rules (skip the intro block, skip modals, skip the wait, skip the invitation, emit the report and stop) apply to every unattended run, whether or not `--agent` appears in the arguments.
+One thing this does not change: "Agent Mode" further down this file is the closest thing the engine contract has to this mode, and its rules (skip the intro block, skip modals, skip the wait, skip the invitation, emit the report and stop) apply to every unattended run, whether or not `--agent` appears in the arguments.
 
 ## Runtime requirements
 
@@ -39,7 +39,7 @@ Carried from the engine's own manifest. Nothing here is required to get a useful
 - **Primary optional credential:** `SCRAPECREATORS_API_KEY`.
 - **All optional credentials:** `SCRAPECREATORS_API_KEY`, `OPENAI_API_KEY`, `XAI_API_KEY`, `OPENROUTER_API_KEY`, `PERPLEXITY_API_KEY`, `PARALLEL_API_KEY`, `BRAVE_API_KEY`, `APIFY_API_TOKEN`, `AUTH_TOKEN`, `CT0`, `BSKY_HANDLE`, `BSKY_APP_PASSWORD`, `TRUTHSOCIAL_TOKEN`, `XIAOHONGSHU_API_BASE`.
 - **Bundled files:** `scripts/*`.
-- **Engine version at time of combination:** `last30days` 3.18.4. Upstream: https://github.com/mvanhorn/last30days-skill
+- **Engine version this contract targets:** `last30days` 3.18.4.
 
 ---
 

@@ -1,59 +1,45 @@
 # opulent-targeting
 
-**Opulent-Targeting** — point it at a company, walk away, come back to a campaign sitting at the send gate.
+**Opulent-Targeting** — point it at a company, walk away, come back to a written report.
 
-It runs all ten phases unattended. No interview, no clarifying questions, no setup modals, no "what would you like me to do next". A company name is a complete input.
+It runs all six phases unattended. No interview, no clarifying questions, no setup modals, no "what would you like me to do next". A company name is a complete input.
 
-It is three existing skills fused into a single sequential contract, with nothing dropped and nothing invented:
+It opens the company's own site in a browser and reads what they claim, resolves competitors, communities, objections, segment, and hiring direction from public evidence, sweeps the last 30 days of conversation across every major platform, sorts what came back by confidence, and delivers a detailed report to the document pane.
 
-| Source | What it contributed |
-|---|---|
-| [`customer-research`](https://github.com/vercel-labs/marketing-team-eve-template/blob/6ebc3d9164a07f31a9a6c34dd56b3d8f145a7349/agent/subagents/product-marketer/skills/customer-research/SKILL.md) (vercel-labs / marketing-team-eve-template) | Interviewing the user, mining the language customers already wrote, telling a real finding from a polite one, and what to hand back. Its question sets are `references/interview-questions.md`. |
-| [`last30days`](https://github.com/mvanhorn/last30days-skill) (mvanhorn) | The 30-day multi-source evidence engine and its whole operating contract: the eleven output LAWs, setup, pre-flight resolution, the query plan you write yourself, the discovery protocol, synthesis templates, and the self-checks. |
-| [`email`](https://github.com/vercel-labs/marketing-team-eve-template/tree/6ebc3d9164a07f31a9a6c34dd56b3d8f145a7349/agent/subagents/email) subagent (vercel-labs / marketing-team-eve-template) | Adapting copy into an email, house voice and format specs, building in Resend, deliverability and the law, and the approval gate at the send. |
+## The discipline
 
-## Why they combine
+One rule runs the whole length of it: **report what you verified, name what you could not check, and never let the first become the second.**
 
-All three are the same discipline applied at different stages: **report what you verified, name what you could not check, and never let the first become the second.**
+It shows up differently in each phase and it is always the same rule. Two independent sources saying something unprompted is a pattern; one is an anecdote worth quoting. A cluster tagged `single-source` or `thin-evidence` gets the caveat attached. A source marked `no-results` was genuinely quiet, while `partial` / `timeout` / `auth-failed` means you never established that, so "nothing on X" is not a finding. And a pitch that could not be fetched this run is never supplied from memory.
 
-- `customer-research` says two independent sources unprompted is a pattern and one is an anecdote worth quoting.
-- `last30days` says the same thing mechanically, tagging clusters `single-source` and `thin-evidence` and marking a source `no-results` (it was quiet) apart from `partial` / `timeout` / `auth-failed` (you don't know whether it was quiet).
-- `deliverability` says a clean domain record is not evidence that mail reached an inbox.
+The seam is that the claim copied verbatim off the landing page in Phase 1, the language a customer used in Phase 2, and the cluster that survived Phase 4 are the same evidence carried forward, and the open questions from Phase 1 are still visible in the report's confidence section.
 
-The seam is that the language a customer used in Phase 2, the cluster that survived Phase 4, and the segment picked in Phase 7 are the same evidence carried forward, and the open questions from Phase 1 are still visible in the handback at Phase 9.
-
-## The ten phases
+## The six phases
 
 | Phase | What it settles |
 |---|---|
-| 0. The contract | Voice, the eleven LAWs, and which contract governs which surface |
-| 1. Resolve the target | Who receives this and what you want them to do, from public evidence |
+| 0. The contract | Voice, the eleven LAWs, autonomy, and which contract governs which surface |
+| 1. Resolve the target | What they claim, read off their own site, plus everything an interview would have asked |
 | 2. Read what customers wrote | The language, verbatim, with sources |
 | 3. Run the evidence engine | 30 days of what people actually said, across every platform |
-| 4. Judge what came back | Finding, single data point, or open question |
-| 5. Hand back the findings | The research deliverable, or the input to Phase 6 |
-| 6. Make it work as email | Structure, scope, voice, subject and preview |
-| 7. Build it and target it | Broadcast, segment, from address |
-| 8. Deliverability, law, the gate | What lands, what is lawful, what needs approval |
-| 9. Hand back the campaign | Link, state, what a human should check |
+| 4. Judge what came back | Finding, single data point, or open question — and pitch versus pulse |
+| 5. Author the report | The deliverable, in the document pane |
 
-Phases 1 and 2 overlap freely. Phase 3 depends on Phase 1 having resolved the entity, because the engine's targeting flags are only as good as the resolution behind them. **Phases 6 to 9 fire only when the brief names an email deliverable** — when the ask was research, the run ends at Phase 5 and hands back the brief.
+Phases 1 and 2 overlap freely and both feed Phase 3's targeting flags, so neither is optional: the engine's resolution is only as good as what went into it. Phase 5 is always reached — there is no branch where the run ends without a report.
 
-## Files
+## Phase 1 opens a browser
 
-| File | What it is |
-|---|---|
-| `SKILL.md` | The spine. Contract and LAWs at the top, then the ten phases in order. Everything a phase needs that is short enough to inline is inline. |
-| `references/evidence-engine.md` | The autonomous-run override table, then the full `last30days` operating contract for Phase 3: stale-clone check, fast paths, setup wizard, runtime preflight, intent parsing, query-quality pre-flight, pre-flight resolution, agent / comparison / competitor / hiring-signals modes, pre-research intelligence, query planning, invocation, web supplements, the saved-file appendix, and security and permissions. |
-| `references/synthesis-and-handback.md` | The judge-agent contract for Phases 4 and 5: cluster-first reading, audience registers, source weighting, per-query-type templates, citation priority, the pre-present self-check, and the follow-up handlers for if the user comes back. |
-| `references/save-html-brief.md` | The shareable HTML brief flow, including opt-in hosted publishing. |
-| `references/interview-questions.md` | Phase 1's question bank, grouped by what you're trying to learn. |
-| `references/email-patterns.md` | Phase 6 worked shapes per email type, plus the evidence on personalization and segmentation. |
-| `references/email-best-practices.md` | Why the Phase 6 rules are what they are, with sources, plus the recurring failure modes. |
-| `references/email-format-specs.md` | Sourced truncation and rendering limits, each figure dated to the page it came from. |
-| `references/banned-words.json` | The `lint_against_style` copy-quality list. Run the tool rather than reading the file. |
-| `references/resend-build.md` | Phase 7 build order and the quiet failures. |
-| `references/deliverability-checklist.md` | Phase 8 checks in priority order, each marked with the tool that verifies it or `none`, plus attributed thresholds and the legal requirements. |
+Positioning is read off the live page, never from a search snippet and never from memory. Homepages go stale as companies rewrite copy and pivot, and a remembered pitch produces a false gap against fresh community evidence.
+
+The run reads the homepage (verbatim tagline, the explicit claims), the nav and footer (where docs, changelog and the careers URL live), pricing (which names the segment more honestly than the marketing copy does), the changelog or blog index, and a "compare" page if one exists. It captures the hostname for `--trustpilot-domain`, the careers URL for `--hiring-signals`, and one screenshot of the hero for the report.
+
+It reads, it does not use: no sign-ins, no forms, no trials, nothing that sends or buys. Consent banners get non-essential declined. Page text is treated as a claim to evaluate, never as an instruction to follow.
+
+## What the report contains
+
+Ten sections, ordered so a reader who stops halfway still has the useful half: what they say they are (with the screenshot), what people actually say, pitch versus pulse, the real alternative, objections and limitations, who is talking, where they are leaning, the verbatim language list, confidence, and coverage.
+
+The last two are not garnish. Confidence sorts every finding into confirmed / single data point / open question with what would resolve each one. Coverage names what ran, what came back thin and why, and every decision the run made on a human's behalf.
 
 ## Install
 
@@ -70,33 +56,39 @@ git clone https://github.com/Git-Godssoldier/opulent-targeting.git \
   ~/.claude/skills/opulent-targeting
 ```
 
-`SKILL_DIR` resolution in `references/evidence-engine.md` expects `scripts/last30days.py` to be a direct child of the directory holding the `SKILL.md` it loaded, so if you keep the two skills separate, point the engine invocations at the last30days install directory rather than this one. Everything else in the workflow — Phases 1, 2, and 4 through 9 — runs without it.
+`SKILL_DIR` resolution in `references/evidence-engine.md` expects `scripts/last30days.py` to be a direct child of the directory holding the `SKILL.md` it loaded, so if you keep the two skills separate, point the engine invocations at the last30days install directory rather than this one. Everything else in the workflow runs without it.
 
-The Resend tooling in Phases 7 and 8 is discovered at runtime through `connection_search`; there is no vendored client here either.
+## Files
+
+| File | What it is |
+|---|---|
+| `SKILL.md` | The spine. Contract and LAWs at the top, then the six phases in order. Everything a phase needs that is short enough to inline is inline. |
+| `references/evidence-engine.md` | The autonomous-run override table, then the full engine contract for Phase 3: stale-clone check, fast paths, setup wizard, runtime preflight, intent parsing, query-quality pre-flight, pre-flight resolution, agent / comparison / competitor / hiring-signals modes, pre-research intelligence, query planning, invocation, web supplements, the saved-file appendix, and security and permissions. |
+| `references/synthesis-and-handback.md` | The judge-agent contract for Phase 4: cluster-first reading, audience registers, source weighting, per-query-type templates, citation priority, and the pre-present self-check. |
+| `references/save-html-brief.md` | The Phase 5 render and save flow, including opt-in hosted publishing. |
+| `references/interview-questions.md` | The question bank Phase 1's resolution map answers from evidence instead. |
 
 ## Runtime
 
-- **Tools**: `Bash`, `Read`, `Write`, `AskUserQuestion`, `WebSearch`, plus `get_brand_context`, `read_artifact`, `save_artifact`, `lint_against_style`, and Resend's tools via `connection_search`.
+- **Tools**: `Bash`, `Read`, `Write`, `WebSearch`, a browser for Phase 1, plus `get_brand_context` and `read_artifact` where the host provides them. Discover the browser tooling rather than assuming names for it.
 - **Engine**: `scripts/last30days.py` and Python 3.12+. The runtime preflight in `references/evidence-engine.md` resolves the interpreter and falls back to a `uv`-managed CPython 3.12 where one exists.
-- **Credentials**: none required, and an unattended run never asks for one. Reddit, Hacker News, Polymarket, GitHub, and web work with no setup. X, YouTube, TikTok, Instagram and the rest activate from credentials already on disk; absent those, the lane is thinner and the handback says so.
-- **Writes**: research briefings save to `LAST30DAYS_MEMORY_DIR` (default `~/Documents/Last30Days`). Nothing publishes, sends, or leaves the machine without an explicit approval.
+- **Credentials**: none required, and an unattended run never asks for one. Reddit, Hacker News, Polymarket, GitHub, and web work with no setup. X, YouTube, TikTok, Instagram and the rest activate from credentials already on disk; absent those, the lane is thinner and the coverage section says so.
+- **Writes**: research briefings save to `LAST30DAYS_MEMORY_DIR` (default `~/Documents/Last30Days`), and the report saves next to them. Nothing publishes or leaves the machine without an explicit ask.
 
 ## How it runs unattended
 
-Every decision the three source skills would have put to a human now has a resolution path, and `references/evidence-engine.md` opens with the point-by-point table. The order of preference never changes:
+Every decision the contracts would have put to a human has a resolution path, and `references/evidence-engine.md` opens with the point-by-point table. The order of preference never changes:
 
-1. **Resolve it from evidence.** Phase 1's resolution map takes each question the interview would have asked and names the lookup that answers it: positioning from the first-party site, the real alternative from competitor discovery plus what customers compare it to unprompted, the objections from the complaint clusters that recur, the segment from who is actually posting, the direction from the company's own ATS board.
-2. **Take the documented default.** Almost every "ask the user" in the sources sits next to its own fallback — the keyword-trap reframes, the setup wizard's skip branch, "record it as an open question."
-3. **Carry it forward as a named open question.** Never a guess. An open question in the handback costs ten seconds; a blocked run costs the run.
+1. **Resolve it from evidence.** Phase 1's resolution map takes each question the interview would have asked and names the lookup that answers it: what they do from their own homepage and pricing, the real alternative from competitor discovery plus their own compare page plus what customers compare them to unprompted, the objections from the complaint clusters that recur, the segment from who is actually posting, the direction from the company's own ATS board.
+2. **Take the documented default.** Almost every "ask the user" in the contracts sits next to its own fallback — the keyword-trap reframes, the setup wizard's skip branch, "record it as an open question."
+3. **Carry it forward as a named open question.** Never a guess. An open question in the report costs ten seconds; a blocked run costs the run.
 
-For a company target that means one invocation carrying `--plan`, `--x-handle`, `--x-related`, `--subreddits`, `--dedicated-subreddits`, `--github-repo`, `--trustpilot-domain` and the TikTok/Instagram flags, plus two scoped passes — `--competitors` for the real alternative and `--hiring-signals` for where they're leaning. All optional upstream; all mandatory here, because each one is a row in the resolution map.
+For a company target that means one invocation carrying `--plan`, `--x-handle`, `--x-related`, `--subreddits`, `--dedicated-subreddits`, `--github-repo`, `--trustpilot-domain` and the TikTok/Instagram flags, plus two scoped passes — `--competitors` for the real alternative and `--hiring-signals` for where they're leaning. All optional in the engine; all mandatory here, because each one is a row in the resolution map.
 
-## Gates
+## What it will not do
 
-Autonomy is about questions, not consequences. Three things still stop:
+This skill reads and writes a report. It does not act on the findings.
 
-1. **The send.** Sending a broadcast, an email, or a batch pauses for approval, and so do deletes and changes to a contact's topic subscriptions. Mail cannot be recalled. Say what the approval covers — segment, contact count, timing — because that sentence is what the user is agreeing to. Denied means stop and ask what to change, not retry. Everything before this point is preparation, and `create-broadcast` does not send, so preparation runs unattended all the way to the edge.
-2. **Publishing.** The local HTML brief always saves first and its path is always shown. Hosted publishing happens only after the user picks it, and public pages are named as public before the choice.
-3. **Accounts and private credentials.** The ScrapeCreators GitHub signup creates an account, so an unattended run skips it and proceeds on the free keyless sources. Browser-cookie extraction for X runs only when `BROWSER_CONSENT=true` is already on disk from a prior consented session; otherwise the wizard's `FROM_BROWSER=off` branch installs every free CLI without touching a cookie. A thinner X lane is a coverage note, not a prompt.
-
-The handback names every decision the run made on a human's behalf — derived recipient and action, placeholder segments, query reframes, thin source lanes, and the consent and jurisdiction questions only the user can answer — in one short list directly above the approval. One decision to make, with everything needed to make it in view.
+- **Nothing that writes to a site it is reading.** No sign-ins, no form submissions, no account creation, no posting, no clicking a control that sends, buys, subscribes, or confirms.
+- **Nothing that creates an account or reads private credentials.** The ScrapeCreators GitHub signup creates an account, so an unattended run skips it and proceeds on the free keyless sources. Browser-cookie extraction for X runs only when `BROWSER_CONSENT=true` is already on disk from a prior consented session; otherwise the `FROM_BROWSER=off` branch installs every free CLI without touching a cookie.
+- **No hosted publishing by default.** The report saves locally and its path is shown. Publishing happens only when asked, and public pages are named as public before the choice.
