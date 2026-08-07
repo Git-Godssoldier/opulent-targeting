@@ -1,17 +1,18 @@
 ---
 name: opulent-targeting
-description: Point it at a company and it researches the whole target unattended, then writes the report. Visits the company's own site in a browser to read what they claim, resolves competitors, communities, objections, segment, and hiring direction from public evidence, runs a 30-day multi-source sweep across Reddit, X, YouTube, TikTok, Hacker News, Polymarket, GitHub, Trustpilot, and the web, sorts what came back into confirmed findings, single data points, and open questions, and delivers a detailed report to the document pane. No interview, no clarifying questions. Use when the user names a company or topic and wants it researched, profiled, or targeted. Triggers "research this company", "profile", "who should we target", "what are people saying about", "run targeting on", "competitive read on", "write me a report on".
+description: Research a named target end to end and write the findings as a document. Reads the target's own site in a browser, sweeps 30 days of Reddit, X, YouTube, TikTok, Hacker News, GitHub, Polymarket and the web, and grades every claim by its provenance. Use for a company profile, a head-to-head between named products, a sweep of what people are saying about a topic, or what is trending in a domain.
 license: MIT
-allowed-tools: Bash, Read, Write, WebSearch
 ---
 
 # Opulent-Targeting
 
 Name a company → get a report you can defend: every claim traced to a source that said it, every number read rather than estimated, and the company's own words pulled from their own site rather than from memory.
 
-Targeting fails on bad inputs more often than bad reasoning. Three kinds of input exist and each is gathered differently. The company says what it is on its own landing page, so open it and read it. Customers wrote the language down in reviews and threads, so go read that too. And the last 30 days of conversation across every platform is a sweep no human runs by hand, so run the engine. Then one discipline carries to the last line of the report: what you verified is a finding, what you could not check is an open question, and the two never trade places.
+Targeting fails on bad inputs more often than bad reasoning. Three kinds of input exist and each is gathered differently. The company says what it is on its own landing page, so open it and read it. Customers wrote the language down in reviews and threads, so go read that too. And the last 30 days of conversation across every platform is a sweep no human runs by hand, so run the engine.
 
-A company name is a complete input. The run does not begin with questions and does not stop for them.
+**Provenance** is the word for what holds those three together, and it is the one idea to carry through every phase. Every claim in the report travels with where it came from and how well that source establishes it: read first-party, corroborated across independent sources, seen once, or not established at all. A claim never moves up a tier because it would read better one tier higher. Phase 4 grades provenance, Phase 5 reports it, and the two sections at the end of the document exist to make it visible.
+
+A company name is a complete input. The run opens with the first lookup and carries to the document without stopping.
 
 ## Ownership
 
@@ -29,14 +30,16 @@ It does not own acting on the findings. It reads, it does not write to anything 
 
 ## The phases
 
-| Phase | What it settles | Where the detail lives |
+| Phase | What it settles | Done when |
 |---|---|---|
-| 0. The contract | Voice, laws, autonomy, and what governs which surface | This file, below |
-| 1. Resolve the target | What they claim, and everything an interview would have asked | `references/interview-questions.md` |
-| 2. Read what customers wrote | The language, verbatim, with sources | This file |
-| 3. Run the evidence engine | 30 days of what people actually said | `references/evidence-engine.md` |
-| 4. Judge what came back | Finding, single data point, or open question | `references/synthesis-and-handback.md` |
-| 5. Author the report | The deliverable: a document in the document pane | This file, below |
+| 0. The contract | Voice, laws, autonomy, and what governs which surface | You have read the LAWs below |
+| 1. Resolve the target | What they claim, and everything an interview would have asked | Every row of the resolution map is filled from a named source or listed as an open question |
+| 2. Read what customers wrote | The language customers use, verbatim | The language list holds phrases customers typed, each with attribution |
+| 3. Run the evidence engine | 30 days of what people actually said | The engine has run and its footer exists, with every mandatory flag passed or its lookup recorded as empty |
+| 4. Judge what came back | The provenance of every claim | Every cluster sits in a tier and every source's `source_status` has been read |
+| 5. Author the report | The deliverable | The document exists in the document pane with all ten sections, and no claim in it outranks its provenance |
+
+Detail lives in `references/interview-questions.md` (Phase 1), `references/evidence-engine.md` (Phase 3), and `references/synthesis-and-handback.md` (Phase 4).
 
 Phases 1 and 2 overlap freely and both feed Phase 3's targeting flags, so neither is optional: the engine's resolution is only as good as what went into it. Phase 5 is always reached. There is no branch where the run ends without a report.
 
@@ -50,14 +53,14 @@ You are inside Opulent-Targeting. Phase 3 of it is a specific research tool with
 
 **How v3.0.7 fixes it:** three structural anchors.
 1. **The MANDATORY first-line badge** (`🌐 last30days v{VERSION} · synced {YYYY-MM-DD}`) at the top of every chat synthesis is the LAW 2 / LAW 4 enforcement anchor. See "BADGE (MANDATORY, FIRST LINE OF OUTPUT)" below.
-2. **The SKILL_DIR substitution** in the engine Bash calls uses the directory of the SKILL.md the model just Read — no resolver list, no precedence walk. Whichever install the harness loaded SKILL.md from is the install whose engine runs. Aligns spec-with-code and works for any harness without enumerating its install path.
+2. **The SKILL_DIR substitution** in the engine Bash calls uses the directory of the SKILL.md the model just Read - no resolver list, no precedence walk. Whichever install the harness loaded SKILL.md from is the install whose engine runs. Aligns spec-with-code and works for any harness without enumerating its install path.
 3. **This preface** tells you plainly: do NOT improvise. Follow the phases in order.
 
-If you catch yourself about to write a `##` section header in a GENERAL-query body, a custom title line, a `Sources:` bullet list, a `for dir in ...` path-discovery loop, or a bare `python3 scripts/last30days.py "{TOPIC}"` engine call with no pre-flight flags — stop. Those are the exact failure modes the LAWs and this contract exist to prevent. The 10/10 beta validation from 2026-04-18 and the 0/8 public v3.0.6 regression from the same day had THE SAME MODEL and SIMILAR SKILL.md CONTENT; the delta is the three anchors this release restores.
+If you catch yourself about to write a `##` section header in a GENERAL-query body, a custom title line, a `Sources:` bullet list, a `for dir in ...` path-discovery loop, or a bare `python3 scripts/last30days.py "{TOPIC}"` engine call with no pre-flight flags - stop. Those are the exact failure modes the LAWs and this contract exist to prevent. The 10/10 beta validation from 2026-04-18 and the 0/8 public v3.0.6 regression from the same day had THE SAME MODEL and SIMILAR SKILL.md CONTENT; the delta is the three anchors this release restores.
 
 ## Autonomous by default
 
-**Point this skill at a company name and it runs every phase to completion without asking a question.** A company name is a complete input. Do not open with a clarifying question, do not stop mid-phase for a preference, do not present a modal, and do not end a phase by asking what to do next.
+**Point this skill at a company name and it runs every phase to completion on its own.** A company name is a complete input. Open with the first lookup, carry each phase to its completion criterion, and end the run with the document. Questions to the user are the one move this skill does not make.
 
 The rule for every decision the contracts would have put to a human:
 
@@ -65,7 +68,7 @@ The rule for every decision the contracts would have put to a human:
 2. **Take the documented default** if the contract names one. Nearly every "ask the user" in this skill has a stated fallback next to it: Step 0.45's keyword-trap classes each carry a reframe, the setup wizard carries a skip branch that writes `SETUP_COMPLETE=true`, and the interview carries "record it as an open question."
 3. **Carry it forward as a named open question** if neither of the above applies. An open question in the report costs the reader ten seconds. A blocked run costs them the run.
 
-Never substitute a guess for step 3. The whole discipline of this skill is that what you verified and what you could not check never trade places, and filling a gap to avoid an awkward line in the report is exactly that trade.
+Step 3 is a real answer. An unresolved question, written down with what would settle it, is the honest output of a lookup that came back empty, and it reads as competence. A guess in its place is a provenance failure: it puts an unsourced claim in the tier reserved for sourced ones.
 
 ### What still stops
 
@@ -109,7 +112,7 @@ Replace `{VERSION}` with the installed plugin version (`jq -r '.version' "$SKILL
 **Placement by query type:**
 - GENERAL / NEWS / PROMPTING / RECOMMENDATIONS: badge on line 1, blank line 2, `What I learned:` on line 3, then bold-lead-in paragraphs
 - COMPARISON: badge on line 1, blank line 2, `# {TOPIC_A} vs {TOPIC_B} [vs {TOPIC_C}]: What the Community Says (/Last30Days)` on line 3, then Quick Verdict section
-- DISCOVERY: pass through the engine's topic-per-section discovery brief verbatim. Its ranked headings, momentum labels, community-voice quotes, evidence counters, `/last30days "<topic>"` handoffs, and the "Nothing solid this window" empty state are engine-owned and are an explicit exception to the GENERAL synthesis template. A nothing-solid result is a valid final answer — relay it, never retry or fabricate topics around it. Trend cards also carry `**Podcast angle:**` and `**X article angle:**` lines (host-authored: YOU wrote them via the leg-3 angles file of the discovery protocol, and the engine rendered them into the brief) plus an engine-owned `**Pipeline:**` line (annotating topics surfaced in a prior discovery run or already marked covered in the persistent topic queue). All three lines are part of the verbatim relay - at relay time never strip, rewrite, or paraphrase them, even the angle lines whose text originated with you.
+- DISCOVERY: pass through the engine's topic-per-section discovery brief verbatim. Its ranked headings, momentum labels, community-voice quotes, evidence counters, `/last30days "<topic>"` handoffs, and the "Nothing solid this window" empty state are engine-owned and are an explicit exception to the GENERAL synthesis template. A nothing-solid result is a valid final answer - relay it, never retry or fabricate topics around it. Trend cards also carry `**Podcast angle:**` and `**X article angle:**` lines (host-authored: YOU wrote them via the leg-3 angles file of the discovery protocol, and the engine rendered them into the brief) plus an engine-owned `**Pipeline:**` line (annotating topics surfaced in a prior discovery run or already marked covered in the persistent topic queue). All three lines are part of the verbatim relay - at relay time never strip, rewrite, or paraphrase them, even the angle lines whose text originated with you.
 
 The LAWs below reference numbered steps - Step 0.5, Step 0.55, Step 0.75, Step 1, Step 2 - and those steps live in `references/evidence-engine.md`, in that order. "This skill" and "this file" in the LAWs mean the chat synthesis and its contract, per the surface split above.
 
@@ -179,7 +182,7 @@ The self-evolving loop is the sticky use case. Every 15 tool calls Hermes pauses
 Cron-scheduled autonomous briefings are the most-cited concrete workflow. r/TunisiaTech's "Use cases of OpenClaw, Hermes Agent" thread says it plainly: "Currently I have daily cron jobs for news briefing, but I know there's much more I can do."
 ```
 
-**LAW 7 - YOU ARE THE PLANNER. `--plan` IS MANDATORY ON NAMED-ENTITY TOPICS.** If you are the reasoning model hosting this skill (Claude Code, Codex, Hermes, Gemini, or any agent runtime that invoked `/last30days`), YOU generate the JSON query plan. You do not need an API key, "LLM provider" credentials, or an external planning service - you ARE the LLM. The `--plan` flag exists precisely so a reasoning model generates its own plan upstream and passes it to the engine. The engine's internal planner and deterministic fallback are headless/cron paths only; on any reasoning-model path, bypass them by passing `--plan "$QUERY_PLAN_FILE"` (the path to a tmpfile you wrote via heredoc — see Step 1 for the pattern; never inline `--plan '$JSON'`, and never wrap the whole engine invocation in `bash -lc '...'` or `zsh -lc '...'` - a single-quoted `-lc` argument ends at the first apostrophe in a search or ranking string like `Kanye West's album` and the command dies with `unmatched`. Run the heredoc block directly in your shell tool; apostrophes in search/ranking strings break shell parsing otherwise).
+**LAW 7 - YOU ARE THE PLANNER. `--plan` IS MANDATORY ON NAMED-ENTITY TOPICS.** If you are the reasoning model hosting this skill (Claude Code, Codex, Hermes, Gemini, or any agent runtime that invoked `/last30days`), YOU generate the JSON query plan. You do not need an API key, "LLM provider" credentials, or an external planning service - you ARE the LLM. The `--plan` flag exists precisely so a reasoning model generates its own plan upstream and passes it to the engine. The engine's internal planner and deterministic fallback are headless/cron paths only; on any reasoning-model path, bypass them by passing `--plan "$QUERY_PLAN_FILE"` (the path to a tmpfile you wrote via heredoc - see Step 1 for the pattern; never inline `--plan '$JSON'`, and never wrap the whole engine invocation in `bash -lc '...'` or `zsh -lc '...'` - a single-quoted `-lc` argument ends at the first apostrophe in a search or ranking string like `Kanye West's album` and the command dies with `unmatched`. Run the heredoc block directly in your shell tool; apostrophes in search/ranking strings break shell parsing otherwise).
 
 Named-entity topics (capitalized proper nouns, product names, person names, project names, or any topic that would benefit from handle resolution in Step 0.55) REQUIRE `--plan`. Your invocation of `scripts/last30days.py` MUST contain `--plan "$QUERY_PLAN_FILE"` (or any path the engine can read). A bare `python3 scripts/last30days.py "$TOPIC" --emit=compact` on a named-entity topic is a LAW 7 violation. Before you invoke Bash, self-check: does my command contain `--plan`? If no, STOP and generate a plan first (see Step 0.75 for the schema).
 
@@ -226,9 +229,11 @@ End of OUTPUT CONTRACT. The laws above are the contract for the chat synthesis; 
 
 # PHASE 1: RESOLVE THE TARGET FROM EVIDENCE
 
-The input is a company name. That is enough. Do not open with questions.
+The input is a company name. That is enough: open the first lookup.
 
 The interview in `references/interview-questions.md` exists because someone inside the company knows the deals, the losses, and the objections. What that question bank is actually asking for is a set of facts, and for a company with a public presence most of those facts are on the record somewhere. So resolve them yourself, mark the ones that genuinely are not public as open questions, and move.
+
+**Done when** every row of the resolution map below is filled from a named source or listed as an open question with what would settle it, and you hold the five carry-forwards: the verbatim claim list, the pricing shape, the hostname, the careers URL, and the hero screenshot.
 
 ## Read what you were given first
 
@@ -237,7 +242,7 @@ The interview in `references/interview-questions.md` exists because someone insi
 
 ## Open their site in a browser
 
-**Go to the landing page and read it. Do not resolve positioning from a search snippet, and never from memory.** Homepages and positioning go stale as companies rewrite copy and pivot, and a remembered pitch produces a false gap against fresh community evidence. The whole pitch-versus-pulse beat in Phase 5 depends on the pitch being real and current, which means fetched, this run, from the page itself.
+**Read positioning off the live page, this run.** Homepages go stale as companies rewrite copy and pivot, so a pitch quoted from memory or from a search snippet describes a company that may no longer exist, and it produces a false gap against fresh community evidence. Pitch versus pulse in Phase 4 is only as good as the pitch, and the pitch is first-party provenance or it is nothing.
 
 Discover the runtime's browser tooling rather than assuming names for it. In a runtime with an in-app browser pane, open the page there; the pattern is the same everywhere: open the URL, read the rendered page as text or as an accessibility tree, and take a screenshot when the layout carries meaning the text does not.
 
@@ -275,20 +280,11 @@ Every question set in `references/interview-questions.md`, and where its answer 
 
 Anything the map cannot fill is an open question with what would resolve it, not a guess. A profile that says "primary segment not yet decided; pricing names two and the threads are mostly a third" is honest and actionable. One that picks a segment to look complete sends every downstream step in a direction nobody chose.
 
-## When a human is in the loop anyway
+## When a human volunteers
 
-The interview is not deleted, it is demoted. If the user is present and volunteers answers, the question bank is still the better source: a person who knows the last lost deal beats any amount of public evidence. Then the original rules apply.
+The interview is demoted, not deleted. A person who knows the last lost deal beats any amount of public evidence, so if the user is present and offering answers, take them and fold them into the map at first-party provenance. `references/interview-questions.md` carries the question sets and how to ask them.
 
-- Ask about the last time, not in general. "Who was the most recent customer to buy, and what made them" beats "who is your ideal customer", because the first has an answer and the second invites a persona.
-- Ask about behavior over opinion. What they did tells you more than what they think buyers want.
-- Follow the loss. The deal that didn't close, and who it went to, is the fastest route to the real competitive set.
-- Push once on an abstraction. "Faster" gets "faster than what, by how much, measured how". Once is enough; twice is an interrogation.
-- Ask what surprised them. The use case customers found that the team didn't plan is frequently the actual positioning.
-- Batch three questions at a time. Twelve questions get skimmed and the answers get thinner as they go.
-
-`references/interview-questions.md` has the question sets by purpose: setting up brand context from scratch, finding the real alternative, testing a differentiator, segment, objections, voice, following up on a vague answer, and what to do when the user doesn't know.
-
-What you must not do is wait. Never open the run with questions, never block a phase on an answer, and never treat a missing answer as a reason to stop.
+That is the only path into asking. The run itself opens with a lookup, moves on a missing answer, and reaches Phase 5 whatever comes back.
 
 ---
 
@@ -308,7 +304,9 @@ What to pull out:
 
 Quote it verbatim, with a source. A paraphrase loses the exact phrasing, which was the point.
 
-Keep the result as a list of actual phrases with attribution, not as a summary of them. It is a section of the Phase 5 report on its own, and it is what makes the report read like the market rather than like a briefing.
+Keep the result as a list of actual phrases with attribution. A summary of the language is not the language, and the exact words are what make the report read like the market rather than like a briefing.
+
+**Done when** the language list holds phrases customers actually typed, each carrying who said it and where.
 
 ---
 
@@ -347,6 +345,8 @@ Then two scoped passes, both of which answer resolution-map rows nothing else co
 
 Skip a row only when the lookup genuinely returned nothing, and say which in the report. "No Trustpilot presence" is a finding. A missing `--trustpilot-domain` because you did not look is a Phase 1 regression.
 
+**Done when** the engine has run and produced its footer, every flag in the table above is either passed or recorded as a lookup that came back empty, and both scoped passes have run or been recorded the same way.
+
 ---
 
 # PHASE 4: JUDGE WHAT CAME BACK
@@ -375,13 +375,13 @@ When the month's conversation is orthogonal to the pitch - on-topic for the comp
 
 `references/synthesis-and-handback.md` carries the rest: how to read cluster-first output, the audience registers, source-specific weighting, how to handle Polymarket odds and X reply clusters and GitHub person-mode and project-mode data, the per-query-type output templates, the citation priority, and the pre-present self-check. Load it before you write a word of the deliverable.
 
-## One discipline, every phase
+## Grading provenance
 
-The same line runs through the site read, the sweep, and the report: **report what you verified, name what you could not check, and never let the first become the second.**
+This is where provenance gets assigned, and the tiers are the ones the report will print: **first-party**, **corroborated**, **single data point**, **open question**.
 
-- In Phase 1 it means an open question instead of a filled-in segment, and a coverage note instead of a remembered tagline when the site would not load.
-- In Phases 3 and 4 it means reading `## Partial Coverage` and `Report.source_status` before you conclude anything. `no-results` means the source completed cleanly with zero matches. `partial`, `rate-limited`, `auth-failed`, `unreachable`, `timeout`, `schema-drift`, `skipped-unconfigured`, and `error` mean the run did not establish that the source was quiet, so never write "nothing on X" for those states.
-- In Phase 5 it means the confidence and coverage sections are not optional garnish. They are the part that makes the rest of the report trustworthy.
+Source status is part of the grade, so read `## Partial Coverage` and `Report.source_status` before you conclude anything. `no-results` means the source completed cleanly with zero matches, which is evidence of absence. `partial`, `rate-limited`, `auth-failed`, `unreachable`, `timeout`, `schema-drift`, `skipped-unconfigured`, and `error` mean the run never established that the source was quiet, so a silence there is an open question rather than a finding. Say "the X lane returned nothing this run" for the first and "the X lane did not complete" for the second.
+
+**Done when** every cluster you intend to use sits in a tier, every source's status has been read, and the pitch-versus-pulse call has been made or deliberately withheld.
 
 ---
 
@@ -395,6 +395,8 @@ Everything the run produced belongs in that document. The saved raw file under `
 
 Only when the user explicitly asks for a standalone HTML file to share does `references/save-html-brief.md` apply, and then it is an export on top of the document rather than a replacement for it.
 
+**Done when** the document exists in the document pane carrying all ten sections below, and every claim in it sits at or under the provenance it earned in Phase 4.
+
 ## What goes in it
 
 Detailed means every row of the resolution map lands somewhere, with its evidence. Order it so a reader who stops halfway still has the useful half.
@@ -407,16 +409,18 @@ Detailed means every row of the resolution map lands somewhere, with its evidenc
 6. **Who is talking.** The segment: which communities, which handles, which register, and whether that matches who the pricing is built for.
 7. **Where they are leaning.** The hiring signals, in signal language only, with new bets distinguished from doubling down.
 8. **The language list.** Phase 2's verbatim phrases with attribution. Do not summarize it; the exact words are the point.
-9. **Confidence.** Findings sorted into confirmed, single data point, and open question, with what would resolve each open question. This is the section that makes the other eight usable.
+9. **Confidence.** Every finding under its provenance tier: first-party, corroborated, single data point, open question. Each open question carries what would settle it. This is the section that makes the other eight usable.
 10. **Coverage.** What ran, what came back thin and why, which sources were `no-results` versus never established, and every decision the run made on a human's behalf: a query reframe, a positioning fallback when the site would not load, a lane that ran without a credential.
 
-## What not to do
+## Holding the line while you write
 
-- Do not paste the full report back into chat once the document exists. Give the badge, say the document is there, and add a few lines on what it found. The document is the long version and repeating it wastes the reader twice.
-- Do not fabricate a section to fill the outline. A company with no Trustpilot presence, no GitHub, and no careers page gets a shorter report, and the coverage section says why.
-- Do not put engine mechanics in the prose (LAW 9). No "the social-listening engine struck out", no "the name collided with", no "the X column is noise". Present what is true about the company and quietly drop the junk; engine health belongs in the coverage section.
-- Do not add data-quality warnings, debug headers, or safety notes to the document. Those are stderr concerns; what the reader needs about run health is already the coverage section.
-- Do not end the report with a bare list of URLs. Attribution lives inline, next to the claim it supports.
+Five places the report degrades, each with the move that holds it:
+
+- **In chat, hand off.** Give the badge, say the document is there, and add a few lines on what it found. The document is the long version; the chat message points at it.
+- **Write the sections the evidence supports.** A company with no Trustpilot presence, no GitHub, and no careers page gets a shorter report, and the coverage section says why each is absent. Length follows the evidence.
+- **Write about the company (LAW 9).** Engine health belongs in the coverage section, in plain terms: which lanes ran, which came back empty, which never completed. The prose stays on the subject.
+- **Let coverage carry run health.** It is the one section that speaks about the run rather than the company, which is what keeps warnings, debug notes, and caveats out of the other nine.
+- **Attribute inline.** Each claim carries its source next to it, where a reader meets the claim and the evidence together.
 
 ---
 

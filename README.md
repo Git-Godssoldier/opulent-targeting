@@ -6,24 +6,26 @@ It runs all six phases unattended. No interview, no clarifying questions, no set
 
 It opens the company's own site in a browser and reads what they claim, resolves competitors, communities, objections, segment, and hiring direction from public evidence, sweeps the last 30 days of conversation across every major platform, sorts what came back by confidence, and writes a detailed report as a document in the document pane.
 
-## The discipline
+## Provenance
 
-One rule runs the whole length of it: **report what you verified, name what you could not check, and never let the first become the second.**
+One idea runs the whole length of it. Every claim in the report travels with where it came from and how well that source establishes it, in four tiers: **first-party**, **corroborated**, **single data point**, **open question**. A claim never moves up a tier because it would read better one tier higher.
 
-It shows up differently in each phase and it is always the same rule. Two independent sources saying something unprompted is a pattern; one is an anecdote worth quoting. A cluster tagged `single-source` or `thin-evidence` gets the caveat attached. A source marked `no-results` was genuinely quiet, while `partial` / `timeout` / `auth-failed` means you never established that, so "nothing on X" is not a finding. And a pitch that could not be fetched this run is never supplied from memory.
+That is what each phase is doing. Two independent sources saying something unprompted is corroborated; one is a single data point worth quoting. A source marked `no-results` was genuinely quiet, while `partial` / `timeout` / `auth-failed` means the run never established that, so a silence there is an open question rather than a finding. A pitch that could not be fetched this run is never supplied from memory.
 
-The seam is that the claim copied verbatim off the landing page in Phase 1, the language a customer used in Phase 2, and the cluster that survived Phase 4 are the same evidence carried forward, and the open questions from Phase 1 are still visible in the report's confidence section.
+The seam is that the claim copied verbatim off the landing page in Phase 1, the language a customer used in Phase 2, and the cluster that survived Phase 4 are the same evidence carried forward, still carrying its tier when it reaches the document.
 
 ## The six phases
 
-| Phase | What it settles |
-|---|---|
-| 0. The contract | Voice, the eleven LAWs, autonomy, and which contract governs which surface |
-| 1. Resolve the target | What they claim, read off their own site, plus everything an interview would have asked |
-| 2. Read what customers wrote | The language, verbatim, with sources |
-| 3. Run the evidence engine | 30 days of what people actually said, across every platform |
-| 4. Judge what came back | Finding, single data point, or open question — and pitch versus pulse |
-| 5. Author the report | The deliverable: a document in the document pane |
+Each phase carries a completion criterion, so the run knows done from not-done rather than stopping when it feels finished.
+
+| Phase | What it settles | Done when |
+|---|---|---|
+| 0. The contract | Voice, the eleven LAWs, autonomy, surfaces | The LAWs are read |
+| 1. Resolve the target | What they claim, read off their own site | Every row of the resolution map is sourced or listed as an open question |
+| 2. Read what customers wrote | The language, verbatim | Every phrase in the list carries who said it and where |
+| 3. Run the evidence engine | 30 days across every platform | The engine footer exists and every mandatory flag is passed or recorded empty |
+| 4. Judge what came back | The provenance of every claim | Every cluster sits in a tier and every source status has been read |
+| 5. Author the report | The deliverable | The document exists with all ten sections and no claim outranks its provenance |
 
 Phases 1 and 2 overlap freely and both feed Phase 3's targeting flags, so neither is optional: the engine's resolution is only as good as what went into it. Phase 5 is always reached — there is no branch where the run ends without a report.
 
@@ -41,7 +43,7 @@ Phase 5 creates a document in the document pane and writes the report into it. O
 
 Ten sections, ordered so a reader who stops halfway still has the useful half: what they say they are (with the screenshot), what people actually say, pitch versus pulse, the real alternative, objections and limitations, who is talking, where they are leaning, the verbatim language list, confidence, and coverage.
 
-The last two are not garnish. Confidence sorts every finding into confirmed / single data point / open question with what would resolve each one. Coverage names what ran, what came back thin and why, and every decision the run made on a human's behalf.
+The last two are not garnish. Confidence puts every finding under its provenance tier, each open question carrying what would settle it. Coverage names what ran, what came back empty, what never completed, and every decision the run made on a human's behalf.
 
 ## Install
 

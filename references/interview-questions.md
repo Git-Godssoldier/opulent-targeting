@@ -1,6 +1,17 @@
 # Question sets
 
+Reached from Phase 1 of `SKILL.md`, on the one branch where a human is present and offering answers. The run never waits on these: it resolves what it can from evidence and records the rest as open questions. When someone is there, their answers enter the resolution map at first-party provenance.
+
 Grouped by what you're trying to learn. Ask three at a time, in the user's own terms, and follow the specifics rather than working through a list.
+
+## How to ask
+
+- Ask about the last time, not in general. "Who was the most recent customer to buy, and what made them" beats "who is your ideal customer", because the first has an answer and the second invites a persona.
+- Ask about behavior over opinion. What they did tells you more than what they think buyers want.
+- Follow the loss. The deal that didn't close, and who it went to, is the fastest route to the real competitive set.
+- Push once on an abstraction. "Faster" gets "faster than what, by how much, measured how". Once is enough; twice is an interrogation.
+- Ask what surprised them. The use case customers found that the team didn't plan is frequently the actual positioning.
+- Batch three questions at a time. Twelve questions get skimmed and the answers get thinner as they go.
 
 ## Setting up brand context from scratch
 
