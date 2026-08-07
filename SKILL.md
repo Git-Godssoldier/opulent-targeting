@@ -15,7 +15,7 @@ A company name is a complete input. The run does not begin with questions and do
 
 ## Ownership
 
-This skill owns the path from a company name to a written report: reading their first-party claims, resolving the competitive and community picture, sweeping the last 30 days, judging what survives, and authoring the deliverable.
+This skill owns the path from a company name to a written report: reading their first-party claims, resolving the competitive and community picture, sweeping the last 30 days, judging what survives, and writing the document.
 
 It does not own acting on the findings. It reads, it does not write to anything outside its own report: no posting, no sending, no forms, no sign-ins, no changes to any account. The report is where the work stops.
 
@@ -36,7 +36,7 @@ It does not own acting on the findings. It reads, it does not write to anything 
 | 2. Read what customers wrote | The language, verbatim, with sources | This file |
 | 3. Run the evidence engine | 30 days of what people actually said | `references/evidence-engine.md` |
 | 4. Judge what came back | Finding, single data point, or open question | `references/synthesis-and-handback.md` |
-| 5. Author the report | The deliverable, in the document pane | `references/save-html-brief.md` |
+| 5. Author the report | The deliverable: a document in the document pane | This file, below |
 
 Phases 1 and 2 overlap freely and both feed Phase 3's targeting flags, so neither is optional: the engine's resolution is only as good as what went into it. Phase 5 is always reached. There is no branch where the run ends without a report.
 
@@ -88,9 +88,9 @@ Write links as plain markdown, `[label](url)`. Don't paste a bare URL, and don't
 Two surfaces come out of this skill and they have different shapes. Both ban em-dashes, and in both an em-dash becomes ` - `, a single hyphen with spaces on both sides, per LAW 3.
 
 - **The chat synthesis** is governed by the eleven LAWs below: badge on line 1, `What I learned:` prose label, bold-lead-in paragraphs, no invented title, no `##` headers, no trailing `Sources:` block, engine footer passed through verbatim. Citations follow LAW 8's host split.
-- **The document report** is the Phase 5 deliverable and it is allowed the structure a report needs: a title, sections, tables, and a screenshot. LAW 2 and LAW 4 do not apply to it, for the same reason they carry an explicit exception for comparison output. Everything else does: no em-dashes, no fabricated numbers, no trailing link dump, and every claim attributed.
+- **The document** is the Phase 5 deliverable, written into the document pane, and it is allowed the structure a report needs: a title, sections, tables, and a screenshot. LAW 2 and LAW 4 do not apply to it, for the same reason they carry an explicit exception for comparison output. Everything else does: no em-dashes, no fabricated numbers, no trailing link dump, and every claim attributed.
 
-When the report is the deliverable the chat synthesis gets shorter, not longer. `references/save-html-brief.md` covers that split under "HTML as the requested deliverable": do not paste the full report back into chat after handing over the artifact.
+The document is the long version, so the chat synthesis gets shorter, not longer. Once the document exists, do not paste its contents back into chat.
 
 ## OUTPUT CONTRACT (BADGE + LAWS - READ BEFORE EMITTING THE CHAT SYNTHESIS)
 
@@ -387,9 +387,13 @@ The same line runs through the site read, the sweep, and the report: **report wh
 
 # PHASE 5: AUTHOR THE REPORT IN THE DOCUMENT PANE
 
-The report is the deliverable. Not the chat message, not the saved raw file: a written document the user opens and reads.
+**Create a document in the document pane and write the report there.** That document is the deliverable. Not the chat message, not the saved raw file: a document the user opens, reads, and keeps.
 
-Render it as HTML through the engine and surface it in the document pane. `references/save-html-brief.md` is the canonical save flow and you must read it before you render, not after. Follow it exactly: write the report body verbatim to a temp file with a quoted heredoc, call the engine with `--emit=html --synthesis-file` and the same scope flags as your original run, respect the collision guard on `{slug}-brief.html`, and hand back the absolute path. Do not improvise the flow from memory, do not change the path convention, and do not publish to a hosted service unless the user asked.
+Create it as the last action of the run, once the evidence is judged and you know what the report says. One document per run, titled for the company and the date. Write the whole report into it, not a summary with a pointer to somewhere else.
+
+Everything the run produced belongs in that document. The saved raw file under `LAST30DAYS_MEMORY_DIR` is the audit trail, not the deliverable, and the chat message is a handoff, not a substitute. If a finding only exists in the raw file, the reader will never see it.
+
+Only when the user explicitly asks for a standalone HTML file to share does `references/save-html-brief.md` apply, and then it is an export on top of the document rather than a replacement for it.
 
 ## What goes in it
 
@@ -408,10 +412,10 @@ Detailed means every row of the resolution map lands somewhere, with its evidenc
 
 ## What not to do
 
-- Do not paste the full report back into chat after handing over the artifact. Give the badge, the path, and a few lines on what it found. The report is the long version and repeating it wastes the reader twice.
+- Do not paste the full report back into chat once the document exists. Give the badge, say the document is there, and add a few lines on what it found. The document is the long version and repeating it wastes the reader twice.
 - Do not fabricate a section to fill the outline. A company with no Trustpilot presence, no GitHub, and no careers page gets a shorter report, and the coverage section says why.
 - Do not put engine mechanics in the prose (LAW 9). No "the social-listening engine struck out", no "the name collided with", no "the X column is noise". Present what is true about the company and quietly drop the junk; engine health belongs in the coverage section.
-- Do not add data-quality warnings, debug headers, or safety notes to the rendered file. Those are stderr concerns, not artifact concerns.
+- Do not add data-quality warnings, debug headers, or safety notes to the document. Those are stderr concerns; what the reader needs about run health is already the coverage section.
 - Do not end the report with a bare list of URLs. Attribution lives inline, next to the claim it supports.
 
 ---

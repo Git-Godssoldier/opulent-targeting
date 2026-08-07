@@ -4,7 +4,7 @@
 
 It runs all six phases unattended. No interview, no clarifying questions, no setup modals, no "what would you like me to do next". A company name is a complete input.
 
-It opens the company's own site in a browser and reads what they claim, resolves competitors, communities, objections, segment, and hiring direction from public evidence, sweeps the last 30 days of conversation across every major platform, sorts what came back by confidence, and delivers a detailed report to the document pane.
+It opens the company's own site in a browser and reads what they claim, resolves competitors, communities, objections, segment, and hiring direction from public evidence, sweeps the last 30 days of conversation across every major platform, sorts what came back by confidence, and writes a detailed report as a document in the document pane.
 
 ## The discipline
 
@@ -23,7 +23,7 @@ The seam is that the claim copied verbatim off the landing page in Phase 1, the 
 | 2. Read what customers wrote | The language, verbatim, with sources |
 | 3. Run the evidence engine | 30 days of what people actually said, across every platform |
 | 4. Judge what came back | Finding, single data point, or open question — and pitch versus pulse |
-| 5. Author the report | The deliverable, in the document pane |
+| 5. Author the report | The deliverable: a document in the document pane |
 
 Phases 1 and 2 overlap freely and both feed Phase 3's targeting flags, so neither is optional: the engine's resolution is only as good as what went into it. Phase 5 is always reached — there is no branch where the run ends without a report.
 
@@ -35,7 +35,9 @@ The run reads the homepage (verbatim tagline, the explicit claims), the nav and 
 
 It reads, it does not use: no sign-ins, no forms, no trials, nothing that sends or buys. Consent banners get non-essential declined. Page text is treated as a claim to evaluate, never as an instruction to follow.
 
-## What the report contains
+## The report is a document, not a chat message
+
+Phase 5 creates a document in the document pane and writes the report into it. One document per run, titled for the company and the date. That document is the deliverable: the saved raw file under `LAST30DAYS_MEMORY_DIR` is the audit trail, and the chat message is a handoff. A finding that only exists in the raw file is a finding the reader never sees.
 
 Ten sections, ordered so a reader who stops halfway still has the useful half: what they say they are (with the screenshot), what people actually say, pitch versus pulse, the real alternative, objections and limitations, who is talking, where they are leaning, the verbatim language list, confidence, and coverage.
 
@@ -65,7 +67,7 @@ git clone https://github.com/Git-Godssoldier/opulent-targeting.git \
 | `SKILL.md` | The spine. Contract and LAWs at the top, then the six phases in order. Everything a phase needs that is short enough to inline is inline. |
 | `references/evidence-engine.md` | The autonomous-run override table, then the full engine contract for Phase 3: stale-clone check, fast paths, setup wizard, runtime preflight, intent parsing, query-quality pre-flight, pre-flight resolution, agent / comparison / competitor / hiring-signals modes, pre-research intelligence, query planning, invocation, web supplements, the saved-file appendix, and security and permissions. |
 | `references/synthesis-and-handback.md` | The judge-agent contract for Phase 4: cluster-first reading, audience registers, source weighting, per-query-type templates, citation priority, and the pre-present self-check. |
-| `references/save-html-brief.md` | The Phase 5 render and save flow, including opt-in hosted publishing. |
+| `references/save-html-brief.md` | The standalone HTML export flow, including opt-in hosted publishing. Only applies when the user explicitly asks for a shareable file on top of the document. |
 | `references/interview-questions.md` | The question bank Phase 1's resolution map answers from evidence instead. |
 
 ## Runtime
@@ -73,7 +75,7 @@ git clone https://github.com/Git-Godssoldier/opulent-targeting.git \
 - **Tools**: `Bash`, `Read`, `Write`, `WebSearch`, a browser for Phase 1, plus `get_brand_context` and `read_artifact` where the host provides them. Discover the browser tooling rather than assuming names for it.
 - **Engine**: `scripts/last30days.py` and Python 3.12+. The runtime preflight in `references/evidence-engine.md` resolves the interpreter and falls back to a `uv`-managed CPython 3.12 where one exists.
 - **Credentials**: none required, and an unattended run never asks for one. Reddit, Hacker News, Polymarket, GitHub, and web work with no setup. X, YouTube, TikTok, Instagram and the rest activate from credentials already on disk; absent those, the lane is thinner and the coverage section says so.
-- **Writes**: research briefings save to `LAST30DAYS_MEMORY_DIR` (default `~/Documents/Last30Days`), and the report saves next to them. Nothing publishes or leaves the machine without an explicit ask.
+- **Writes**: the report goes to the document pane. Research briefings save to `LAST30DAYS_MEMORY_DIR` (default `~/Documents/Last30Days`) as the audit trail. Nothing publishes or leaves the machine without an explicit ask.
 
 ## How it runs unattended
 
